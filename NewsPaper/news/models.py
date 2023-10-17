@@ -45,9 +45,15 @@ class Post(models.Model):
     def preview(self):
         return self.text_articles_news[0:124] + '...'
 
+    def __str__(self):
+        return self.title_articles_news
+
 
 class Category(models.Model):
     name_of_category = models.CharField(max_length=255, unique=True)
+
+    def __str__(self):
+        return self.name_of_category.title()
 
 
 class PostCategory(models.Model):
