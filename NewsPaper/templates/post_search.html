@@ -1,0 +1,26 @@
+{% extends 'flatpages/default.html' %}
+
+{% block content %}
+<h1>Найти</h1>
+<hr>
+<h1>Все новости</h1>
+
+   <form action="" method="get">
+       {# Переменная, которую мы передали через контекст, может сгенерировать нам форму с полями #}
+            {{ filterset.form.as_p }}
+       <input type="submit" value="Найти" />
+
+   </form>
+    <br>
+    {% if posts %}
+        {% for post in posts %}
+            <h2> {{ post.title_articles_news}} </h2>
+            <h3> {{ post.time_create }}</h3>
+            <br>
+            <h4> {{ post.text_articles_news|truncatewords:10 }} </h4>
+            <br>
+        {% endfor %}
+    {% else %}
+        <h3>Введите параметры</h3>
+    {% endif %}
+{% endblock conten

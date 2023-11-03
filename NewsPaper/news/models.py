@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models import Sum
+from django.urls import reverse
 
 
 class Author(models.Model):
@@ -26,11 +27,11 @@ class Post(models.Model):
     ]
 
     articles_or_news = models.CharField(max_length=15, choices=TYPE_POSTS, default=article)
-    text_articles_news = models.CharField(max_length=4500)
+    text_articles_news = models.CharField(max_length=4500, verbose_name='Текст')
     rating = models.IntegerField(default=0)
-    author = models.ForeignKey(Author, on_delete=models.CASCADE)
-    categories = models.ManyToManyField('Category', through='PostCategory')
-    title_articles_news = models.CharField(max_length=100)
+    author = models.ForeignKey(Author, on_delete=models.CASCADE, verbose_name='Автор')
+    categories = models.ManyToManyField('Category', through='PostCategory', verbose_name='Категория')
+    title_articles_news = models.CharField(max_length=100, verbose_name='Заголовок')
     time_create = models.DateTimeField(auto_now_add=True)
     time_update = models.DateTimeField(auto_now=True)
 
@@ -47,6 +48,9 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title_articles_news
+
+    def get_absolute_url(self):
+        return reverse('post_detail', args=[str(self.id)])
 
 
 class Category(models.Model):
