@@ -1,6 +1,8 @@
 from django import forms
 from django.core.exceptions import ValidationError
 from .models import Post
+from django.contrib.auth.models import Group
+from allauth.account.forms import SignupForm
 
 
 class PostForm(forms.ModelForm):
@@ -27,3 +29,11 @@ class PostForm(forms.ModelForm):
                 'Название не олжно быть идентично тексту'
             )
         return cleaned_data
+
+
+class BasicSignupForm(SignupForm):
+    def save(self, request):
+        user = super(BasicSignupForm, self).save(request)
+        basic_group = Group.objects.get(name='common')
+        basic_group.user_set.add(user)
+        return user

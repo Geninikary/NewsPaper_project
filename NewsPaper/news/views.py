@@ -1,8 +1,9 @@
-from datetime import datetime
-
-from django.shortcuts import render
-from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView, TemplateView
 from django.urls import reverse_lazy
+from django.contrib.auth.models import Group
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect
 from .models import Post
 from .filters import PostFilter
 from .forms import PostForm
@@ -50,7 +51,8 @@ class PostSearch(ListView):
         return context
 
 
-class NewsPostCreate(CreateView):
+class NewsPostCreate(PermissionRequiredMixin, CreateView):
+    permission_required = ('news.add_Post',)
     form_class = PostForm
     model = Post
     template_name = 'news_create.html'
@@ -61,7 +63,8 @@ class NewsPostCreate(CreateView):
         return super().form_valid(form)
 
 
-class ArticlePostCreate(CreateView):
+class ArticlePostCreate(PermissionRequiredMixin, CreateView):
+    permission_required = ('news.add_Post',)
     form_class = PostForm
     model = Post
     template_name = 'article_create.html'
@@ -72,7 +75,8 @@ class ArticlePostCreate(CreateView):
         return super().form_valid(form)
 
 
-class NewsPostUpdate(UpdateView):
+class NewsPostUpdate(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
+    permission_required = ('news.change_Post',)
     form_class = PostForm
     model = Post
     template_name = 'news_update.html'
@@ -83,7 +87,8 @@ class NewsPostUpdate(UpdateView):
         return super().form_valid(form)
 
 
-class ArticlePostUpdate(UpdateView):
+class ArticlePostUpdate(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
+    permission_required = ('news.change_Post',)
     form_class = PostForm
     model = Post
     template_name = 'article_update.html'
@@ -106,12 +111,19 @@ class ArticlePostDelete(DeleteView):
     success_url = reverse_lazy('posts_list')
 
 
+class IndexView(LoginRequiredMixin, TemplateView):
+    template_name = 'profile.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['is_not_author'] = not self.request.user.groups.filter(name='authors').exists()
+        return context
 
 
-
-
-
-
-
-
-
+@login_required
+def upgrade_me(request):
+    user = request.user
+    authors_group = Group.objects.get(name='authors')
+    if not request.user.groups.filter(name='authors').exists():
+        authors_group.user_set.add(user)
+    return redirect('posts_list')

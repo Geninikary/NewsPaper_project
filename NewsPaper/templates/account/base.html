@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+{% extends 'flatpages/default.html' %}
+<html lang="en">
+<head>
+    <title>{% block head_title %}{% endblock head_title %}</title>
+</head>
+<body>
+    {% block body %}
+    {% block content %}
+    {% endblock content %}
+    {% endblock body %}
+    {% block exta_body %}
+    {% endblock exta_body %}
+    {% if is_not_author %}
+<button><a href="upgrade/">Стать автором</a></button>
+{% endif %}
+</body>
+</html>
