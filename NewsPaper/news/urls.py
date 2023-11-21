@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import (PostList, PostDetail, NewsPostCreate, ArticlePostCreate, NewsPostDelete, ArticlePostDelete,
-                    NewsPostUpdate, ArticlePostUpdate, PostSearch, IndexView, upgrade_me)
+                    NewsPostUpdate, ArticlePostUpdate, PostSearch, IndexView, upgrade_me, CategoryView, subscribers)
 
 urlpatterns = [
     path('news/', PostList.as_view(), name='posts_list'),
@@ -14,4 +14,6 @@ urlpatterns = [
     path('articles/<int:pk>/edit/', ArticlePostUpdate.as_view(), name='article_update'),
     path('profile/', IndexView.as_view(), name='profile'),
     path('profile/upgrade/', upgrade_me, name='upgrade'),
+    path('categories/<int:pk>', CategoryView.as_view(), name='category_list'),
+    path('categories/<int:pk>/subscribe', subscribers, name='subscribes'),
 ]

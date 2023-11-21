@@ -1,10 +1,12 @@
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView, TemplateView
+from django.core.mail import EmailMultiAlternatives
+from django.template.loader import render_to_string
 from django.urls import reverse_lazy
 from django.contrib.auth.models import Group
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import redirect
-from .models import Post
+from .models import Post, Category
 from .filters import PostFilter
 from .forms import PostForm
 
@@ -127,3 +129,30 @@ def upgrade_me(request):
     if not request.user.groups.filter(name='authors').exists():
         authors_group.user_set.add(user)
     return redirect('posts_list')
+
+
+class CategoryView(ListView):
+    model = Post
+    template_name = 'category_list.html'
+    context_object_name = 'category_news_list'
+
+    def get_queryset(self):
+        self.category = get_object_or_404(Category, id=self.kwargs['pk'])
+        queryset = Post.objects.filter(categories=self.category)
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['is_not_subscriber'] = self.request.user not in self.category.subscribes.all()
+        context['category'] = self.category
+        return context
+
+
+@login_required
+def subscribers(request, pk):
+    user = request.user
+    category = Category.objects.get(id=pk)
+    category.subscribers.add(user)
+    message = 'Вы успешно подписались на категорию '
+
+    return render(category, 'subscribes', {'category': category, 'message': message})

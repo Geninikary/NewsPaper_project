@@ -55,13 +55,19 @@ class Post(models.Model):
 
 class Category(models.Model):
     name_of_category = models.CharField(max_length=255, unique=True)
+    subscribes = models.ManyToManyField(User, related_name='categories', verbose_name='Подписчики')
 
     def __str__(self):
-        return self.name_of_category.title()
+        return self.name_of_category
 
 
 class PostCategory(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+
+
+class SubscriberCategory(models.Model):
+    subscriber = models.ForeignKey(Post, on_delete=models.CASCADE)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
 

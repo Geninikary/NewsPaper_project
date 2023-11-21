@@ -1,0 +1,13 @@
+{% extends 'flatpages/default.html' %}
+
+{% block content %}
+    <h2>Категории</h2>
+    <h4><a href="categories/{{ categories.id }}" >{{category}}</a></h4>
+
+    <form action="" method="get">
+        {{ categories.as_p }}
+        <input type="submit" value="Subscribe">
+    </form>
+
+
+{% endblock %}
