@@ -11,16 +11,25 @@ Posts
 
     <h1>Новости/статьи</h1>
     <h6>количество новостей: {{posts|length }}</h6>
-
-
+    <br>
+    <a href="{% url 'news_search' %}">Найти</a>
+    <br>
     <hr>
     {% for post in posts %}
+        <hr>
+        <h3>
+            {% for category in post.categories.all %}
+            <a href="{%url 'category_list' category.id%}">{{category}}</a>
+            {% endfor %}
+        </h3>
         <h2> {{ post.title_articles_news}} </h2>
         <h3> {{ post.time_create }}</h3>
         <br>
         <h4> {{ post.text_articles_news|truncatewords:10 }} </h4>
         <br>
+        <hr>
     {% endfor %}
+
 
     {# Информация о предыдущих страницах #}
     {% if page_obj.has_previous %}

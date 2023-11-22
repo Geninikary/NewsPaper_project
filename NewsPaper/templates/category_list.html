@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+{% extends 'flatpages/default.html' %}
+
+
+{% block title %}
+Category
+{% endblock title %}
+
+{% block content %}
+
+    <h1>Категория {{category}}</h1>
+    {% if is_not_subscriber %}
+        <p class="text-center"><a href="{% url 'subscribes' category.id %}" class="btn btn-secondary btn-sm">Подписаться</a></p>
+    {% else %}
+        <p class="text-center"><a href="{% url 'unsubscribes' category.id %}" class="btn btn-secondary btn-sm">Отписаться</a></p>
+    {% endif %}
+    <br>
+
+    {% for post in category_news_list %}
+        <hr>
+        <h3>
+            {% for category in post.categories.all %}
+            <a href="{% url 'category_list' category.id %}">{{category}}</a>
+            {% endfor %}
+        </h3>
+        <h2> {{ post.title_articles_news}} </h2>
+        <h3> {{ post.time_create }}</h3>
+        <br>
+        <h4> {{ post.text_articles_news|truncatewords:10 }} </h4>
+        <br>
+        <hr>
+    {% endfor %}
+
+{% endblock %}

@@ -1,6 +1,6 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
-from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView, TemplateView
+from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView, TemplateView, View
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.urls import reverse_lazy
@@ -9,6 +9,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Post, Category
 from .filters import PostFilter
 from .forms import PostForm
+from dotenv import dotenv_values
 
 
 class PostList(ListView):
@@ -152,7 +153,31 @@ class CategoryView(ListView):
 def subscribers(request, pk):
     user = request.user
     category = Category.objects.get(id=pk)
-    category.subscribers.add(user)
+    category.subscribes.add(user)
     message = 'Вы успешно подписались на категорию '
+    html_content = render_to_string('send_mail.html',
+                                    {'category': category.name_of_category},
+                                    )
+    msg = EmailMultiAlternatives(
+        subject=f'Здравствуй увожаемый {user}, ты подписался на свою любиую категорию',
+        body=message,
+        from_email=dotenv_values('EMAIL_HOST_USER'),
+        to=[dotenv_values('EMAIL_HOST_USER'), '@gmail.com']
+    )
+    msg.attach_alternative(html_content, 'text/html')
+    msg.send()
 
-    return render(category, 'subscribes', {'category': category, 'message': message})
+    return render(request, 'subscribes.html', {'category': category, 'message': message, 'user': user})
+
+
+@login_required
+def unsubscribeds(request, pk):
+    user = request.user
+    category = Category.objects.get(id=pk)
+    category.subscribes.remove(user)
+    message = 'Вы отписались от категории'
+
+    return render(request, 'unsubskribes.html', {'message': message, 'category': category})
+
+
+
