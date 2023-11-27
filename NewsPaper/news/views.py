@@ -161,7 +161,7 @@ def subscribers(request, pk):
     msg = EmailMultiAlternatives(
         subject=f'Здравствуй увожаемый {user}, ты подписался на свою любиую категорию',
         body=message,
-        from_email=settings.DEFAULT_FROM_EMAIL,
+        from_email='DEFAULT_FROM_EMAIL',
         to=[user.email]
     )
     msg.attach_alternative(html_content, 'text/html')
