@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Post, Category
 from .filters import PostFilter
 from .forms import PostForm
-from dotenv import dotenv_values
+from django.conf import settings
 
 
 class PostList(ListView):
@@ -161,8 +161,8 @@ def subscribers(request, pk):
     msg = EmailMultiAlternatives(
         subject=f'Здравствуй увожаемый {user}, ты подписался на свою любиую категорию',
         body=message,
-        from_email=dotenv_values('EMAIL_HOST_USER'),
-        to=[dotenv_values('EMAIL_HOST_USER'), '@gmail.com']
+        from_email=settings.DEFAULT_FROM_EMAIL,
+        to=[user.email]
     )
     msg.attach_alternative(html_content, 'text/html')
     msg.send()
