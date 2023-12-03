@@ -12,7 +12,7 @@ class PostForm(forms.ModelForm):
             'categories',
             'title_articles_news',
             'author',
-            #'articles_or_news',
+            'articles_or_news',
             'text_articles_news'
         ]
         widgets = {
@@ -26,7 +26,7 @@ class PostForm(forms.ModelForm):
         text = cleaned_data.get('text_articles_news')
         if title == text:
             raise ValidationError(
-                'Название не олжно быть идентично тексту'
+                'Название не должно быть идентично тексту'
             )
         return cleaned_data
 

@@ -6,10 +6,11 @@ from django.template.loader import render_to_string
 from django.urls import reverse_lazy
 from django.contrib.auth.models import Group
 from django.contrib.auth.decorators import login_required
-from .models import Post, Category
+from .models import Post, Category, User
 from .filters import PostFilter
 from .forms import PostForm
 from django.conf import settings
+import datetime
 
 
 class PostList(ListView):
@@ -54,7 +55,7 @@ class PostSearch(ListView):
         return context
 
 
-class NewsPostCreate(PermissionRequiredMixin, CreateView):
+class PostCreate(PermissionRequiredMixin, CreateView):
     permission_required = ('news.add_Post',)
     form_class = PostForm
     model = Post
@@ -62,20 +63,19 @@ class NewsPostCreate(PermissionRequiredMixin, CreateView):
 
     def form_valid(self, form):
         post = form.save(commit=False)
-        post.articles_or_news = 'news'
+        form.instance.author = self.request.author
+        today = datetime.date.today()
+        limit = today - datetime.timedelta(days=1)
+        if len(Post.objects.filter(author=post.author, time_create__gt=limit)) >= 3:
+            return render(self.request, 'news_limit_3in1day.html')
+        post.save()
         return super().form_valid(form)
 
-
-class ArticlePostCreate(PermissionRequiredMixin, CreateView):
-    permission_required = ('news.add_Post',)
-    form_class = PostForm
-    model = Post
-    template_name = 'article_create.html'
-
-    def form_valid(self, form):
-        post = form.save(commit=False)
-        post.articles_or_news = 'article'
-        return super().form_valid(form)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['filter'] = PostFilter(self.request.GET, queryset=self.get_queryset())
+        context['time_now'] = datetime.datetime.utcnow()
+        context['how_many'] = 3 #len(Post.objects.filter(author=post.author, time_create__gt=limit))
 
 
 class NewsPostUpdate(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
@@ -161,7 +161,7 @@ def subscribers(request, pk):
     msg = EmailMultiAlternatives(
         subject=f'Здравствуй увожаемый {user}, ты подписался на свою любиую категорию {category}',
         body=message,
-        from_email=settings.DEFAULT_FROM_EMAIL,
+        from_email=settings.EMAIL_HOST_USER + '@yandex.ru',
         to=[user.email]
     )
     msg.attach_alternative(html_content, 'text/html')
@@ -178,6 +178,3 @@ def unsubscribeds(request, pk):
     message = 'Вы отписались от категории'
 
     return render(request, 'unsubskribes.html', {'message': message, 'category': category})
-
-
-

@@ -4,10 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d8e3900e-eec4-4094-8a68-085e888baf47" name="Changes" comment="There is a mistakes with connect to email">
+    <list default="true" id="d8e3900e-eec4-4094-8a68-085e888baf47" name="Changes" comment="There is a mistakes with connect to email, again.">
+      <change afterPath="$PROJECT_DIR$/../PROJECT_D5.4/NewsPaper/news/management/commands/runapscheduler.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../PROJECT_D5.4/NewsPaper/news/signals.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../PROJECT_D5.4/NewsPaper/templates/account/email/email_confirmation_signup_message.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../PROJECT_D5.4/NewsPaper/templates/account/email/email_confirmation_subject.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../PROJECT_D5.4/NewsPaper/templates/article_limit_3in1day.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../PROJECT_D5.4/NewsPaper/templates/email_posts_for_the_week.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../PROJECT_D5.4/NewsPaper/templates/news_limit_3in1day.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../PROJECT_D5.4/NewsPaper/templates/send_email_create_post_cat.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../PROJECT_D5.4/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../PROJECT_D5.4/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../PROJECT_D5.4/NewsPaper/NewsPaper/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/../PROJECT_D5.4/NewsPaper/NewsPaper/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PROJECT_D5.4/NewsPaper/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/../PROJECT_D5.4/NewsPaper/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PROJECT_D5.4/NewsPaper/news/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/../PROJECT_D5.4/NewsPaper/news/apps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PROJECT_D5.4/NewsPaper/news/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/../PROJECT_D5.4/NewsPaper/news/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PROJECT_D5.4/NewsPaper/news/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/../PROJECT_D5.4/NewsPaper/news/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PROJECT_D5.4/NewsPaper/news/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/../PROJECT_D5.4/NewsPaper/news/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../PROJECT_D5.4/NewsPaper/news/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/../PROJECT_D5.4/NewsPaper/news/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PROJECT_D5.4/NewsPaper/templates/article_create.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PROJECT_D5.4/NewsPaper/templates/posts.html" beforeDir="false" afterPath="$PROJECT_DIR$/../PROJECT_D5.4/NewsPaper/templates/posts.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PROJECT_D5.4/NewsPaper/templates/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/../PROJECT_D5.4/NewsPaper/templates/profile.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,6 +66,7 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
     &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
@@ -63,6 +80,7 @@
       <recent name="C:\Users\Geninikary\PycharmProjects\PROJECT_D5.4\NewsPaper\templates\account" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Geninikary\PycharmProjects\PROJECT_D5.4\NewsPaper\templates\account\email" />
       <recent name="C:\Users\Geninikary\PycharmProjects\PROJECT_D5.4\NewsPaper\templates" />
       <recent name="C:\Users\Geninikary\PycharmProjects\PROJECT_D5.4\NewsPaper\news" />
     </key>
@@ -223,7 +241,39 @@
       <option name="project" value="LOCAL" />
       <updated>1700683010894</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="There is a mistakes with connect to email, again.">
+      <option name="closed" value="true" />
+      <created>1701084790283</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1701084790283</updated>
+    </task>
+    <task id="LOCAL-00006" summary="There is a mistakes with connect to email, again.">
+      <option name="closed" value="true" />
+      <created>1701085419349</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1701085419349</updated>
+    </task>
+    <task id="LOCAL-00007" summary="There is a mistakes with connect to email, again.">
+      <option name="closed" value="true" />
+      <created>1701085644362</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1701085644362</updated>
+    </task>
+    <task id="LOCAL-00008" summary="There is a mistakes with connect to email, again.">
+      <option name="closed" value="true" />
+      <created>1701086624772</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1701086624772</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -279,6 +329,7 @@
     <MESSAGE value=" Add forms, new tamplates, new filters(2.0)&#10; Add authentication, registration, authorization.," />
     <MESSAGE value="There is mistakes with templates, it isn't see category_list.html, news/post_list.html." />
     <MESSAGE value="There is a mistakes with connect to email" />
-    <option name="LAST_COMMIT_MESSAGE" value="There is a mistakes with connect to email" />
+    <MESSAGE value="There is a mistakes with connect to email, again." />
+    <option name="LAST_COMMIT_MESSAGE" value="There is a mistakes with connect to email, again." />
   </component>
 </project>

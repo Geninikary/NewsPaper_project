@@ -11,9 +11,25 @@ Posts
 
     <h1>Новости/статьи</h1>
     <h6>количество новостей: {{posts|length }}</h6>
+    <h6>{{ user }}</h6>
     <br>
-    <a href="{% url 'news_search' %}">Найти</a>
+    <button>
+        <a href="{% url 'news_search' %}">Найти</a>
+    </button>
     <br>
+    <br>
+    <button>
+        <a href="{% url 'profile' %}">Профиль</a>
+    </button>
+    <br>
+    <br>
+    {% if  not is_not_author %}
+        <button>
+            <a href="{% url 'news_create' %}">Создать пост</a>
+        </button>
+    <br>
+
+    {% endif %}
     <hr>
     {% for post in posts %}
         <hr>

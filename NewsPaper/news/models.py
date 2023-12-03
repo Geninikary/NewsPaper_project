@@ -26,7 +26,7 @@ class Post(models.Model):
         ('news', 'новости')
     ]
 
-    articles_or_news = models.CharField(max_length=15, choices=TYPE_POSTS, default=article)
+    articles_or_news = models.CharField(max_length=15, choices=TYPE_POSTS, default=article, verbose_name="Статья или новость")
     text_articles_news = models.CharField(max_length=4500, verbose_name='Текст')
     rating = models.IntegerField(default=0)
     author = models.ForeignKey(Author, on_delete=models.CASCADE, verbose_name='Автор')
@@ -63,11 +63,6 @@ class Category(models.Model):
 
 class PostCategory(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
-
-
-class SubscriberCategory(models.Model):
-    subscriber = models.ForeignKey(Post, on_delete=models.CASCADE)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
 
