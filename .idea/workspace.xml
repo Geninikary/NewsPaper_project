@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d8e3900e-eec4-4094-8a68-085e888baf47" name="Changes" comment="Error related to user access, it is don't add user in model Author.">
-      <change beforePath="$PROJECT_DIR$/../PROJECT_D5.4/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../PROJECT_D5.4/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PROJECT_D5.4/NewsPaper/news/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/../PROJECT_D5.4/NewsPaper/news/views.py" afterDir="false" />
-    </list>
+    <list default="true" id="d8e3900e-eec4-4094-8a68-085e888baf47" name="Changes" comment="Error related to user access, it is don't add user in model Author." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -272,7 +269,15 @@
       <option name="project" value="LOCAL" />
       <updated>1702040318373</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Error related to user access, it is don't add user in model Author.">
+      <option name="closed" value="true" />
+      <created>1702043100120</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1702043100120</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
