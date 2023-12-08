@@ -8,4 +8,7 @@
 {% if is_not_author %}
 <button><a href="upgrade/">Стать автором</a></button>
 {% endif %}
+{% if not is_not_author %}
+<button><a href="{% url 'news_create' %}">Создать пост</a></button>
+{% endif %}
 {% endblock %}

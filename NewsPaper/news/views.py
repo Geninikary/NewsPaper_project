@@ -6,7 +6,7 @@ from django.template.loader import render_to_string
 from django.urls import reverse_lazy
 from django.contrib.auth.models import Group
 from django.contrib.auth.decorators import login_required
-from .models import Post, Category, User
+from .models import Post, Category, Author
 from .filters import PostFilter
 from .forms import PostForm
 from django.conf import settings
@@ -56,17 +56,18 @@ class PostSearch(ListView):
 
 
 class PostCreate(PermissionRequiredMixin, CreateView):
-    permission_required = ('news.add_Post',)
+    permission_required = 'news.add_post'
     form_class = PostForm
     model = Post
     template_name = 'news_create.html'
 
     def form_valid(self, form):
         post = form.save(commit=False)
-        form.instance.author = self.request.author
+        form.instance.author = self.request.Author.user
         today = datetime.date.today()
-        limit = today - datetime.timedelta(days=1)
-        if len(Post.objects.filter(author=post.author, time_create__gt=limit)) >= 3:
+        time_limit = today - datetime.timedelta(days=1)
+        limit_actions = len(Post.objects.filter(author=post.author, time_create__gt=time_limit))
+        if limit_actions >= 3:
             return render(self.request, 'news_limit_3in1day.html')
         post.save()
         return super().form_valid(form)
@@ -76,10 +77,11 @@ class PostCreate(PermissionRequiredMixin, CreateView):
         context['filter'] = PostFilter(self.request.GET, queryset=self.get_queryset())
         context['time_now'] = datetime.datetime.utcnow()
         context['how_many'] = 3 #len(Post.objects.filter(author=post.author, time_create__gt=limit))
+        return context
 
 
 class NewsPostUpdate(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
-    permission_required = ('news.change_Post',)
+    permission_required = ('news.change_post',)
     form_class = PostForm
     model = Post
     template_name = 'news_update.html'
@@ -91,7 +93,7 @@ class NewsPostUpdate(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
 
 
 class ArticlePostUpdate(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
-    permission_required = ('news.change_Post',)
+    permission_required = ('news.change_post',)
     form_class = PostForm
     model = Post
     template_name = 'article_update.html'
@@ -129,6 +131,7 @@ def upgrade_me(request):
     authors_group = Group.objects.get(name='authors')
     if not request.user.groups.filter(name='authors').exists():
         authors_group.user_set.add(user)
+    user.save()
     return redirect('posts_list')
 
 

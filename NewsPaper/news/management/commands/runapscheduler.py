@@ -22,12 +22,12 @@ def my_job():
     last_week = today - datetime.timedelta(day=7)
     posts = Post.objects.filter(created_at__gte=last_week)
     categories = set(posts.values_list('category__name', flat=True))
-    subscribers = set(Category.objects.filter(name__in=categories).valius_list('subscribers__email'))
+    subscribers = set(Category.objects.filter(name__in=categories).valius_list('subscribers__email', flat=True))
 
     html_context = render_to_string(
         'email_posts_for_the_week.html',
         {
-            'link': f'{settings.SITE_URL}/news/{pk}',
+            'link': settings.SITE_URL,
             'posts': posts,
         }
     )
@@ -40,6 +40,7 @@ def my_job():
     )
     msg.attach_alternative(html_context, 'text/html')
     msg.send()
+
 
 # функция, которая будет удалять неактуальные задачи
 def delete_old_job_executions(max_age=604_800):

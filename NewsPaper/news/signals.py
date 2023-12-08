@@ -20,7 +20,7 @@ def send_notifications(preview, pk, title_articles_news, subscribers):
         from_email=settings.DEFAULT_FROM_EMAIL,
         to=subscribers
     )
-    msg.attach_alternative(html_content,'text/html')
+    msg.attach_alternative(html_content, 'text/html')
     msg.send()
 
 
@@ -34,4 +34,4 @@ def notive_about_new_post(sender, instance, **kwargs):
             subscribers = cat.subscribes.all()
             subscribers_email += [s.email for s in subscribers]
 
-        send_notifications(instance.preview(), instance.pk, instance.title_articles_news)
+        send_notifications(instance.preview(), instance.pk, instance.title_articles_news, subscribers_email)

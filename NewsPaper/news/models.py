@@ -6,7 +6,7 @@ from django.urls import reverse
 
 class Author(models.Model):
     rating = models.IntegerField(default=0)
-    user = models.OneToOneField(User, on_delete=models.PROTECT)
+    user = models.OneToOneField(User, on_delete=models.PROTECT, related_name='author')
 
     def update_rating(self):
         rating_of_post_by_author = Post.objects.filter(author=self).aggregate(Sum('rating'))['rating__sum'] * 3
@@ -15,6 +15,9 @@ class Author(models.Model):
         self.rating = rating_of_post_by_author + rating_of_comments_by_author + rating_of_comments_under_posts_of_author
 
         self.save()
+
+    def __str__(self):
+        return self.user.username
 
 
 class Post(models.Model):
