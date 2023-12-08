@@ -6,7 +6,7 @@ from django.template.loader import render_to_string
 from django.urls import reverse_lazy
 from django.contrib.auth.models import Group
 from django.contrib.auth.decorators import login_required
-from .models import Post, Category, Author
+from .models import Post, Category,
 from .filters import PostFilter
 from .forms import PostForm
 from django.conf import settings
