@@ -63,7 +63,7 @@ class PostCreate(PermissionRequiredMixin, CreateView):
 
     def form_valid(self, form):
         post = form.save(commit=False)
-        form.instance.author = self.request.Author.user
+        form.instance.author = self.request.user.auther
         today = datetime.date.today()
         time_limit = today - datetime.timedelta(days=1)
         limit_actions = len(Post.objects.filter(author=post.author, time_create__gt=time_limit))
