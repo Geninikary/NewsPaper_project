@@ -6,7 +6,7 @@ from django.template.loader import render_to_string
 from django.urls import reverse_lazy
 from django.contrib.auth.models import Group
 from django.contrib.auth.decorators import login_required
-from .models import Post, Category,
+from .models import Post, Category, Author
 from .filters import PostFilter
 from .forms import PostForm
 from django.conf import settings
@@ -63,7 +63,7 @@ class PostCreate(PermissionRequiredMixin, CreateView):
 
     def form_valid(self, form):
         post = form.save(commit=False)
-        form.instance.author = self.request.user.auther
+        form.instance.author = self.request.user.author
         today = datetime.date.today()
         time_limit = today - datetime.timedelta(days=1)
         limit_actions = len(Post.objects.filter(author=post.author, time_create__gt=time_limit))
@@ -131,6 +131,8 @@ def upgrade_me(request):
     authors_group = Group.objects.get(name='authors')
     if not request.user.groups.filter(name='authors').exists():
         authors_group.user_set.add(user)
+    if not Author.objects.filter(user=request.user).exists():
+        Author.objects.create(user=request.user)
     user.save()
     return redirect('posts_list')
 

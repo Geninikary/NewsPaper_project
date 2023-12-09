@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d8e3900e-eec4-4094-8a68-085e888baf47" name="Changes" comment="Error related to user access, it is don't add user in model Author." />
+    <list default="true" id="d8e3900e-eec4-4094-8a68-085e888baf47" name="Changes" comment="Error related to user access, it is don't add user in model Author.">
+      <change beforePath="$PROJECT_DIR$/../PROJECT_D5.4/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../PROJECT_D5.4/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PROJECT_D5.4/NewsPaper/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/../PROJECT_D5.4/NewsPaper/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PROJECT_D5.4/NewsPaper/news/management/commands/runapscheduler.py" beforeDir="false" afterPath="$PROJECT_DIR$/../PROJECT_D5.4/NewsPaper/news/management/commands/runapscheduler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PROJECT_D5.4/NewsPaper/news/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/../PROJECT_D5.4/NewsPaper/news/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PROJECT_D5.4/NewsPaper/templates/post.html" beforeDir="false" afterPath="$PROJECT_DIR$/../PROJECT_D5.4/NewsPaper/templates/post.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -277,7 +283,23 @@
       <option name="project" value="LOCAL" />
       <updated>1702043100120</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Error related to user access, it is don't add user in model Author.">
+      <option name="closed" value="true" />
+      <created>1702043500907</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1702043500907</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Error related to user access, it is don't add user in model Author.">
+      <option name="closed" value="true" />
+      <created>1702043691129</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1702043691129</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

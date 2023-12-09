@@ -9,6 +9,5 @@ Posts
 {% block content %}
         <h3>{{ post.title_articles_news }}</h3>
         <h6>{{ post.time_create|date:'d M Y'}}</h6>
-        <br>
-        <h5>{{ new.text_articles_news|censor }}</h5>
+        <h4>{{ new.text_articles_news|censor }}</h4>
 {% endblock content %}
