@@ -7,7 +7,8 @@ Posts
 {% endblock title %}
 
 {% block content %}
+        <h4>{{ post.categories }}</h4>
         <h3>{{ post.title_articles_news }}</h3>
         <h6>{{ post.time_create|date:'d M Y'}}</h6>
-        <h4>{{ new.text_articles_news|censor }}</h4>
+        <h4>{{ post.text_articles_news|censor }}</h4>
 {% endblock content %}

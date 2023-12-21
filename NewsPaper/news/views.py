@@ -10,6 +10,7 @@ from .models import Post, Category, Author
 from .filters import PostFilter
 from .forms import PostForm
 from django.conf import settings
+from .tasks import send_mail_to_user
 import datetime
 
 
@@ -63,13 +64,14 @@ class PostCreate(PermissionRequiredMixin, CreateView):
 
     def form_valid(self, form):
         post = form.save(commit=False)
-        form.instance.author = self.request.user.author
-        today = datetime.date.today()
-        time_limit = today - datetime.timedelta(days=1)
-        limit_actions = len(Post.objects.filter(author=post.author, time_create__gt=time_limit))
-        if limit_actions >= 3:
-            return render(self.request, 'news_limit_3in1day.html')
+        #form.instance.author = self.request.user.author
+        #today = datetime.date.today()
+        #time_limit = today - datetime.timedelta(days=1)
+        #limit_actions = len(Post.objects.filter(author=post.author, time_create__gt=time_limit))
+        #if limit_actions >= 3:
+            #return render(self.request, 'news_limit_3in1day.html')
         post.save()
+        send_mail_to_user.delay(post.pk)
         return super().form_valid(form)
 
     def get_context_data(self, **kwargs):
@@ -166,7 +168,7 @@ def subscribers(request, pk):
     msg = EmailMultiAlternatives(
         subject=f'Здравствуй увожаемый {user}, ты подписался на свою любиую категорию {category}',
         body=message,
-        from_email=settings.EMAIL_HOST_USER + '@yandex.ru',
+        from_email=settings.DEFAULT_FROM_EMAIL,
         to=[user.email]
     )
     msg.attach_alternative(html_content, 'text/html')

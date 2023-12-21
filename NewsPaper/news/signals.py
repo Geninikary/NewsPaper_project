@@ -35,3 +35,5 @@ def notive_about_new_post(sender, instance, **kwargs):
             subscribers_email += [s.email for s in subscribers]
 
         send_notifications(instance.preview(), instance.pk, instance.title_articles_news, subscribers_email)
+
+
