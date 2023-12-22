@@ -22,7 +22,7 @@ def send_mail_to_user(pk):
          }
     )
     msg = EmailMultiAlternatives(
-        subject=post.title_articles_news,
+        subject=Post.title_articles_news,
         body='',
         from_email=settings.DEFAULT_FROM_EMAIL,
         to=subscribers_email
@@ -36,13 +36,13 @@ def send_mail_to_user(pk):
 
 
 @shared_task
-def send_mail_every_monday_8am(pk):
+def send_mail_every_monday_8am():
     today = datetime.now()
     week = today - timedelta(days=7)
     posts = Post.objects.filter(time_create__gte=week)
 
     categories = set(posts.values_list('categories__name_of_category', flat=True))
-    subscribers_email = set(Category.objects.filter(name_of_category__in=categories).values_list('subscribers__email', flat=True))
+    subscribers_email = set(Category.objects.filter(name_of_category__in=categories).values_list('subscribes__email', flat=True))
 
     html_content = render_to_string(
         'email_posts_for_the_week.html',
@@ -52,7 +52,7 @@ def send_mail_every_monday_8am(pk):
         }
     )
     msg = EmailMultiAlternatives(
-        subject=posts.title_articles_news,
+        subject='Публикации за неделю',
         body='',
         from_email=settings.DEFAULT_FROM_EMAIL,
         to=subscribers_email
