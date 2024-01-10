@@ -4,13 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d8e3900e-eec4-4094-8a68-085e888baf47" name="Changes" comment="There it have new files tasks, celery.">
+    <list default="true" id="d8e3900e-eec4-4094-8a68-085e888baf47" name="Changes" comment="There is ready task on the time.">
+      <change afterPath="$PROJECT_DIR$/../PROJECT_D5.4/NewsPaper/news/management/commands/deletenew.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../PROJECT_D5.4/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../PROJECT_D5.4/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PROJECT_D5.4/NewsPaper/NewsPaper/celery.py" beforeDir="false" afterPath="$PROJECT_DIR$/../PROJECT_D5.4/NewsPaper/NewsPaper/celery.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../PROJECT_D5.4/NewsPaper/NewsPaper/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/../PROJECT_D5.4/NewsPaper/NewsPaper/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../PROJECT_D5.4/NewsPaper/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/../PROJECT_D5.4/NewsPaper/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PROJECT_D5.4/NewsPaper/news/management/commands/runapscheduler.py" beforeDir="false" afterPath="$PROJECT_DIR$/../PROJECT_D5.4/NewsPaper/news/management/commands/runapscheduler.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PROJECT_D5.4/NewsPaper/news/tasks.py" beforeDir="false" afterPath="$PROJECT_DIR$/../PROJECT_D5.4/NewsPaper/news/tasks.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PROJECT_D5.4/NewsPaper/news/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/../PROJECT_D5.4/NewsPaper/news/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PROJECT_D5.4/NewsPaper/news/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/../PROJECT_D5.4/NewsPaper/news/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PROJECT_D5.4/NewsPaper/news/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/../PROJECT_D5.4/NewsPaper/news/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PROJECT_D5.4/NewsPaper/news/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/../PROJECT_D5.4/NewsPaper/news/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,8 +23,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Unit Test" />
-        <option value="Python Script" />
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -44,7 +46,7 @@
     </option>
   </component>
   <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 2
+  &quot;associatedIndex&quot;: 7
 }</component>
   <component name="ProjectId" id="2W49ITaVKA0DDevVg8lKNSnKiHd" />
   <component name="ProjectViewState">
@@ -316,7 +318,15 @@
       <option name="project" value="LOCAL" />
       <updated>1703168587957</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="There is ready task on the time.">
+      <option name="closed" value="true" />
+      <created>1703247541608</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1703247541608</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -377,6 +387,18 @@
     <MESSAGE value="Error related to user access, it is don't add user in model Author." />
     <MESSAGE value="In project creates to subscribe on a category, sends email after registration and after subscribe on a category." />
     <MESSAGE value="There it have new files tasks, celery." />
-    <option name="LAST_COMMIT_MESSAGE" value="There it have new files tasks, celery." />
+    <MESSAGE value="There is ready task on the time." />
+    <option name="LAST_COMMIT_MESSAGE" value="There is ready task on the time." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <default-breakpoints>
+        <breakpoint type="python-exception">
+          <properties notifyOnTerminate="true" exception="BaseException">
+            <option name="notifyOnTerminate" value="true" />
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

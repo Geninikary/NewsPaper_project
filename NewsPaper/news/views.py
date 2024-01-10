@@ -11,6 +11,7 @@ from .filters import PostFilter
 from .forms import PostForm
 from django.conf import settings
 from .tasks import send_mail_to_user
+from django.core.cache import cache
 import datetime
 
 
@@ -37,6 +38,14 @@ class PostDetail(DetailView):
     ordering = '-text_articles_news'
     template_name = 'post.html'
     context_object_name = 'post'
+    queryset = Post.objects.all()
+
+    def get_object(self, *args, **kwargs):
+        obj = cache.get(f'new-{self.kwargs["pk"]}', None)
+        if not obj:
+            obj = super().get_object(queryset=self.queryset)
+            cache.set(f'new-{self.kwargs["pk"]}', obj)
+        return obj
 
 
 class PostSearch(ListView):
